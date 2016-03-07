@@ -82,7 +82,7 @@ def prep_data(data, balance=True):
 		
 	return data
 
-def get_results(clf, params, x_train, y_train, x_val, y_val):
+def get_results(clf, params, x_train, y_train, x_val, y_val, cols):
 	'''
 		prints results of GridSearch training
 
@@ -93,6 +93,7 @@ def get_results(clf, params, x_train, y_train, x_val, y_val):
 			y_train (np.array): y training labels
 			x_val (np.array): x validation data
 			y_val (np.array): y validation labels
+			cols (list): column names
 
 		Returns:
 			grid (GridSearch)
@@ -106,7 +107,7 @@ def get_results(clf, params, x_train, y_train, x_val, y_val):
 		print(Series(importances, index=cols).sort_values(ascending=False).head(30))
 	return grid
 
-def small_train_size_test(clf, params, x_train, y_train):
+def small_train_size_test(clf, params, x_train, y_train, cols):
 	'''
 		runs multiple gridsearches on increasingly smaller train sizes and aggregaates the results
 
@@ -115,6 +116,7 @@ def small_train_size_test(clf, params, x_train, y_train):
 			params (dict): GridSearch params to use
 			x_train (np.array): x training data
 			y_train (np.array): y training labels
+			cols (list): column names
 
 		Returns:
 			reports (list of classification report DataFrames)
